@@ -46,8 +46,10 @@ struct ParentView: View {
     Button("Show Child") {
       send(.showChildButtonTapped)
     }
-    .sheet(item: $store.scope(state: \.destination?.child, action: \.destination.child)) {
-      ChildView(store: $0)
+    .sheet(item: $store.scope(state: \.destination?.child, action: \.destination.child)) { childStore in
+      NavigationStack {
+        ChildView(store: childStore)
+      }
     }
   }
 }
