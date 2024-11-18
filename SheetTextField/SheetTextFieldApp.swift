@@ -1,17 +1,15 @@
-//
-//  SheetTextFieldApp.swift
-//  SheetTextField
-//
-//  Created by Sean Rich on 11/18/24.
-//
-
+import ComposableArchitecture
 import SwiftUI
 
 @main
 struct SheetTextFieldApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+  let store = Store(
+    initialState: Parent.State(),
+    reducer: { Parent()._printChanges() }
+  )
+  var body: some Scene {
+    WindowGroup {
+      ParentView(store: store)
     }
+  }
 }
